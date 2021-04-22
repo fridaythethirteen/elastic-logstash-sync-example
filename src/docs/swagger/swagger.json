@@ -15,7 +15,7 @@
       "description": "Resources related to search and autocomplete"
     }
   ],
-  "host": "localhost:3001",
+  "host": "localhost:8888",
   "schemes": [
     "http"
   ],

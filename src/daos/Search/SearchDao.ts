@@ -7,7 +7,11 @@ interface IBucket { key: string; doc_count: number };
 
 interface IHits { _score: number; _source: ISearch };
 
-export interface IResponse {
+interface IError {
+    error?: any
+}
+
+export interface IResponse extends IError {
     hits: {
         hits: IHits[];
     },
@@ -112,6 +116,9 @@ class SearchDao implements ISearchDao {
             searchBody.query.bool.filter = [...searchBody.query.bool.filter, rangeFilter];
         }
         const data = await this.getSearchByKeyword(searchBody);
+        if (!data || data.error) {
+            return { facets: [], docs: [], sorts: [] };
+        }
         const { hits: { hits }, aggregations: { Category_Facets: { buckets: categories = [] }, Address_Facets: { buckets: addresses = [] } } } = data;
         const categoriesFacets = categories.map(category => {
             const { key, doc_count: count } = category;
