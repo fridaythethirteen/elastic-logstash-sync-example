@@ -1,0 +1,1 @@
+# elastic-logstash-sync-example
