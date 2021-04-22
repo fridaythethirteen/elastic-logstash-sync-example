@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the API Contract for the Search Section",
+    "version": "1.0.0",
+    "title": "Search api for elastic search instance",
+    "contact": {
+      "email": "vipul319@gmail.com"
+    }
+  },
+  "basePath": "/api/",
+  "tags": [
+    {
+      "name": "Search",
+      "description": "Resources related to search and autocomplete"
+    }
+  ],
+  "host": "localhost:3001",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/search/autocomplete/{query}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Retrieve a list of keywords",
+        "description": "The 'autocomplete' takes a query and returns keywords, ranked by relevance (score) and categorized by 'toptrend' or 'brand'.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "path",
+            "description": "The first characters of a potential keyword",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Keywords"
+              },
+              "example": [
+                {
+                  "score": 7.0055704,
+                  "Category": "Fast Food",
+                  "Name": "Subway",
+                  "Address": "Simon Fraser University, Mackenzie Cafe, 8888 University Drive, Burnaby V5A4Y6"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/search/{keywords}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Find products by keyword",
+        "description": "The 'search' resource takes one or several keywords and returns a list of matching product ids, ranked by relevance (score).",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "keywords",
+            "in": "path",
+            "description": "The keyword(s)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "filter data e.g. Address:New york, this will filter results based on address in newyork",
+            "type": "string"
+          },
+          {
+            "name": "maxPrice",
+            "in": "query",
+            "required": false,
+            "description": "filter out the response with maximum price",
+            "type": "string"
+          },
+          {
+            "name": "minPrice",
+            "in": "query",
+            "required": false,
+            "description": "filter out the response with minimun price",
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "type": "integer",
+            "in": "query",
+            "required": false,
+            "description": "the total number of data visible on the current page"
+          },
+          {
+            "name": "from",
+            "type": "integer",
+            "in": "query",
+            "required": false,
+            "description": "the current page in the valuation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Keywords": {
+      "type": "object",
+      "required": [
+        "Category",
+        "Name",
+        "Address",
+        "score"
+      ],
+      "properties": {
+        "Category": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Address": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    }
+  }
+}

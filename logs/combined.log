@@ -1,0 +1,8 @@
+{"message":"Express server started on port: 8081","level":"info","timestamp":"2020-08-29T11:47:20.218Z"}
+{"message":"Express server started on port: 3001","level":"info","timestamp":"2020-08-29T11:48:47.565Z"}
+{"message":"Proxy url: http://localhost:9200/resturant/_search?pretty time take: 42","level":"info","timestamp":"2020-08-29T11:48:52.232Z"}
+{"message":"Proxy url: http://localhost:9200/resturant/_search?pretty time take: 15","level":"info","timestamp":"2020-08-29T11:48:59.552Z"}
+{"message":"Proxy url: http://localhost:9200/resturant/_search?pretty time take: 10","level":"info","timestamp":"2020-08-29T11:49:00.449Z"}
+{"message":"Proxy url: http://localhost:9200/resturant/_search?pretty time take: 10","level":"info","timestamp":"2020-08-29T11:49:02.353Z"}
+{"message":"Express server started on port: 3002","level":"info","timestamp":"2020-08-29T11:49:10.819Z"}
+{"message":"Proxy url: http://localhost:9200/resturant/_search?pretty time take: 27","level":"info","timestamp":"2020-08-29T11:49:16.190Z"}
