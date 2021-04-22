@@ -11,7 +11,7 @@ This repository compose of example of how to setup logstash with elastic search 
 
 #### How to run
 
-```
+```bash
 docker-compose up --build # if not build previously
 ```
 
